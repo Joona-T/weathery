@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "dotenv": "^6.2.0",
+    "suncalc": "^1.8.0",
     "vue": "^2.6.6",
     "vue-resource": "^1.5.1",
+    "vue-skycons": "^1.0.5",
     "xml2js": "^0.4.19"
   },
   "devDependencies": {

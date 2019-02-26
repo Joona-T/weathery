@@ -1,9 +1,11 @@
 <template>
-    <div class="container content-box">
+    <div>
         <app-current-weather 
             :location="userLocation"
-            :weather="currentWeather">
+            :weather="currentWeather"
+            :night="night">
         </app-current-weather>
+        <!-- <p>{{apiQuery}}</p> -->
 
 
         <button @click="getUserCoordinates">Hit me</button>
@@ -31,19 +33,20 @@
                 queryParameters: '&parameters=temperature,humidity,weathersymbol3',
 
                 // Each hours' forecasts will be stored in this array as objects.
-                forecasts: [],          
+                forecasts: [],
+                night: false,       
             }
         },
         computed: {
             queryStarttime() {
                 // This returns zulu time - 1 hour.
                 // It result's on FMI API giving the current hour's forecast as a first element.
-                return '&starttime=' + this.calulateTime(3, 'minus');
+                return '&starttime=' + this.calulateTime(0, 'minus');
             },
             queryEndtime() {
                 // This will result in API sending forecasts for the next 6 hours if,
                 // the start time is set to this.calulateTime(3, 'minus').
-                return '&endtime=' + this.calulateTime(3, 'plus');
+                return '&endtime=' + this.calulateTime(6, 'plus');
             },
             queryPlace() {
                 return '&place=' + this.userLocation;
@@ -58,8 +61,6 @@
             },
             currentWeather() {
                 if(this.forecasts.length > 1) {
-                    console.log("this.forecasts[0]:")
-                    console.log(this.forecasts[0])
                     return this.forecasts[0];
                 } else {
                     return {};
@@ -117,9 +118,12 @@
                 if(navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition((position) => {
                         if(position) {
-                            const userLatitude = position.coords.latitude;
-                            const userLongitude = position.coords.longitude;
-                            const userMapCoordinates = userLatitude + "," + userLongitude;
+                            const latitude = position.coords.latitude;
+                            const longitude = position.coords.longitude;
+
+                            this.figureOutIfNight(latitude, longitude)
+
+                            const userMapCoordinates = latitude + "," + longitude;
                             this.getUserCity(userMapCoordinates);
                         }     
                     })
@@ -175,6 +179,21 @@
                 }
                 var dt = new Date();
                 return dt.toIsoString();
+            },
+            figureOutIfNight(latitude, longitude) {
+                const SunCalc = require('suncalc');
+                const d = new Date();
+                const hour = d.getHours();
+
+                const suntimes = SunCalc.getTimes(d, latitude, longitude);
+                const sunrise = suntimes.sunrise.getHours();
+                const sunset = suntimes.sunset.getHours();
+
+                if(hour > sunset || hour < sunrise) {
+                    this.night = true;
+                } else if (hour <= sunset && hour >= sunrise) {
+                    this.night = false;
+                }
             }
         },
         created() {
@@ -189,19 +208,4 @@
 </script>
 
 <style>
-    h1 {
-        color: #033C73;
-    }
-    p {
-        font-weight: 500;
-        font-size: 1.2em;
-        word-wrap: break-word;
-    }
-    .content-box {
-        text-align: center;
-        margin-top: 3em;
-    }
-    .content-box p {
-        text-align: left;
-    }
 </style>
