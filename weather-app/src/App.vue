@@ -1,18 +1,18 @@
 <template>
   <div id="app">
     <app-header></app-header>
-    <app-current-weather></app-current-weather>
+    <app-weather></app-weather>
   </div>
 </template>
 
 <script>
   import Header from './components/Header.vue'
-  import CurrentWeather from './components/CurrentWeather.vue'
+  import Weather from './components/weather/Weather.vue'
 
   export default {
     components: {
       'app-header': Header,
-      'app-current-weather': CurrentWeather,
+      'app-weather': Weather,
     }
   }
 </script>
