@@ -25,5 +25,3 @@ Ideas for improvement:
 * Auto-suggestion for the search bar.
 
 ![app thumbnail](thumbnail.png)
-
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
