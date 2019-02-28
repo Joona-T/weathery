@@ -34,7 +34,7 @@
     const moment = require('moment')
 
     // Each forecast API query starts with this prefix.
-    const QUERY_PREFIX = 'http://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::forecast::hirlam::surface::point::simple'
+    const QUERY_PREFIX = 'https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::forecast::hirlam::surface::point::simple'
     // Results in retrieving one forecast dataset for every hour.
     const QUERY_TIMESTEP = '&timestep=60'
     // Forecast data needed for the app.
