@@ -172,7 +172,7 @@
                 // Compose the api request for location information.
                 const REQUEST_PREFIX = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
                 // This key should be save as env variable.
-                const API_KEY = '&key=AIzaSyBKSpvehdl4Ty-1xRSmWjF-pSQ1tj-YO8E';
+                const API_KEY = '&key=' + process.env.VUE_APP_GOOGLE_API_KEY;
                 const API_REQUEST = REQUEST_PREFIX + userMapCoordinates + API_KEY;
 
                 // Binding the self as otherwise it will be out of scope.
