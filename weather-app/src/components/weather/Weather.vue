@@ -241,6 +241,7 @@
             }
         },
         created() {
+            this.fetchForecastData();
             // When component is created, try to locate user.
             this.getUserCoordinates()
             // Also look for search results emited by header component's search bar.

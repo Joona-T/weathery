@@ -61,6 +61,7 @@
         flex-direction: row;
         flex-wrap: nowrap;
         justify-content: space-around;
+        overflow: hidden;
     }
     @media only screen and (min-width: 360px) {
         .app-header {
