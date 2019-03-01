@@ -3,7 +3,7 @@
 Small weather app where the user can find local weather forecast and also search for forecasts in any Scandinavian city.
 [App is hosted with Heroku.](https://weathery-weather-app.herokuapp.com/)
 
-The app is implemented with Vue.js and meant for mobile devices.
+The app is implemented with Vue.js and designed for mobile devices.
 Finnish Meteorological Institute's (FMI) API is used for retrieving the forecast data.
 Google's reverse geocoding API is used for locating the user.
 
@@ -17,11 +17,6 @@ Other dependencies:
 * xml2js for parsing the FMI's XML response: https://www.npmjs.com/package/xml2js
 
 Ideas for improvement:
-* Improved responsiveness
-    * Deployed version's UI might break on some devices (horizontal scrolling).
-    * The search bar is suspected to cause this.
-* Unknown bug with weather quotes 
-    * When changing forecast data, quotes don't alway reload/show properly.
 * Auto-suggestion for the search bar.
 
 ![app thumbnail](thumbnail.png)
