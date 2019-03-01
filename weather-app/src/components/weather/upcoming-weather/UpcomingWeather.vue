@@ -63,4 +63,19 @@
             margin-right: auto;
         }
     }
+    @media only screen and (min-width: 1440px) {
+        .upcoming-weather {
+            padding-top: 2em;
+        }
+    }
+    @media only screen and (min-width: 1920px) {
+        .upcoming-weather {
+            padding-top: 4em;
+        }
+    }
+    @media only screen and (min-width: 2560px) {
+        .upcoming-weather {
+            padding-top: 6em;
+        }
+    }
 </style>

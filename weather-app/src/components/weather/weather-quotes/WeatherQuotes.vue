@@ -1,7 +1,8 @@
 <template>
     <div class="weather-quotes">
         <transition name="slide" mode="out-in">
-            <p :key="quoteIndex">{{ selectedQuote }}</p>
+            <!-- <p :key="quoteIndex">{{ selectedQuote }}</p> -->
+            <p>Some people are making such thorough preparation for rainy days that they aren't enjoying today's sunshine.</p>
         </transition>
     </div>
 </template>
@@ -61,14 +62,14 @@
 
 <style>
     .weather-quotes {
-        position: fixed;
+        position: absolute;
         left: 0;
         bottom: 0;
         background-color: #343a40;
         background-image: linear-gradient(to right, #04519b, #033C73 60%, #02325f);
         background-repeat: no-repeat;
         width: 100%;
-        min-height: 90px;
+        min-height: 96px;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -147,7 +148,6 @@
     }
     @media only screen and (min-width: 1025px) {
         .weather-quotes p {
-            max-width: 922px;
             margin-left: auto;
             margin-right: auto;
             font-size: 1.4rem;

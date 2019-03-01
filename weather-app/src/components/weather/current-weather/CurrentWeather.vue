@@ -102,7 +102,7 @@
     .weather-info {
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: space-between;
         padding-top: .5em;
     }
     h1, p {
@@ -133,11 +133,11 @@
         font-size: 2.5rem;
     }
     .clock p {
-        font-size: 5.3rem;
+        font-size: 4rem;
         text-align: center;
-        font-weight: 400;
-        margin-top: -25px;
+        margin-top: -20px;
         color: #04519b;
+        margin-bottom: 10px;
     }
     @media only screen and (min-width: 360px) and (min-height: 630px) {
         .current-weather {
@@ -269,5 +269,14 @@
             text-align: left;
         }
     }
-
+    @media only screen and (min-width: 1440px) {
+        .current-weather {
+            padding-top: 4em;
+        }
+    }
+    @media only screen and (min-width: 1920px) {
+        .current-weather {
+            padding-top: 6em;
+        }
+    }
 </style>

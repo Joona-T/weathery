@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-between">
         <div class="app-header">
             <div>
                 <a class="navbar-brand" href="#">
@@ -49,9 +49,8 @@
 
 <style>
     .navbar {
-        padding-top: 2px;
-        padding-bottom: 2px;
         background-image: linear-gradient(to right, #04519b, #033C73 60%, #02325f);
+        padding: 2px 6px;
     }
     .form-control-sm {
         border: 0;
@@ -60,27 +59,13 @@
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
-        justify-content: space-around;
         overflow: hidden;
+        justify-content: space-between;
+        width: 100%;
     }
     @media only screen and (min-width: 360px) {
-        .app-header {
-            justify-content: space-between;
-        }
-        .search {
-            margin-left: 2em;
-        }
-    }
-    @media only screen and (min-width: 375px) {
         .navbar {
-            padding-top: 6px;
-            padding-bottom: 6px;
-        }
-        .search {
-            padding-right: 0;
-            right: 0;
-            float: right;
-            margin-left: 3em;
+            padding: 4px 8px;
         }
     }
     @media only screen and (min-width: 411px) {
@@ -88,64 +73,36 @@
             font-size: 1.4em;
         }
         .navbar {
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-        .search {
-            padding-right: 0;
-            right: 0;
-            float: right;
-            margin-left: 4em;
-        }
-        .app-header {
-            justify-content: space-between;
+            padding: 10px;
         }
     }
     @media only screen and (min-width: 768px) {
         .navbar-brand {
             font-size: 1.8em;
         }
-        .navbar {
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-        .search {
-            padding-right: 0;
-            right: 0;
-            float: right;
-            margin-left: 4em;
-        }
-        .app-header {
-            justify-content: space-between;
-            width: 100%;
-        }
         .form-inline .form-control {
-            width: 300px;
             height: 50px;
+        }
+        .navbar {
+            padding: 10px 20px;
         }
     }
     @media only screen and (min-width: 900px) {
         .navbar-brand {
             font-size: 2.2em;
-            padding-left: 20px;
         }
         .navbar {
-            padding-top: 20px;
-            padding-bottom: 20px;
-        }
-        .search {
-            padding-right: 20px;
+            padding: 20px;
         }
     }
     @media only screen and (min-width: 1025px) {
         .app-header {
-            max-width: 1024px;
+            max-width: 1280px;
             margin-left: auto;
             margin-right: auto;
         }
         .navbar {
-            padding-top: 6px;
-            padding-bottom: 6px;
+            padding: 6px 20px;
         }
         .navbar-brand {
             font-size: 1.8rem;

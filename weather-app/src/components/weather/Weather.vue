@@ -1,26 +1,27 @@
 <template>
-    <div class="content-box">
-
-        <i class="fas fa-map-marker-alt" :class="{ pulse: pulseActive }" @click="locateUser"></i>
-        <i class="fas fa-redo-alt" :class="{ spin: spinActive }" @click="refresh"></i>
-
-        <app-current-weather 
-            :location="location"
-            :weather="currentWeather"
-            :night="night">
-        </app-current-weather>
-
-        <app-upcoming-weather 
-            :forecasts="forecasts"
-            :night="night">
-        </app-upcoming-weather>
-
+    <div>
+        <div class="content-box">
+            <i class="fas fa-map-marker-alt" :class="{ pulse: pulseActive }" @click="locateUser"></i>
+            <i class="fas fa-redo-alt" :class="{ spin: spinActive }" @click="refresh"></i>
+    
+            <app-current-weather 
+                :location="location"
+                :weather="currentWeather"
+                :night="night">
+            </app-current-weather>
+    
+            <app-upcoming-weather 
+                :forecasts="forecasts"
+                :night="night">
+            </app-upcoming-weather>
+    
+            
+        </div>
         <app-weather-quotes 
-            :weather="currentWeather.weathersymbol3" 
-            :night="night"
-            class="quotes">
+                :weather="currentWeather.weathersymbol3" 
+                :night="night"
+                class="quotes">
         </app-weather-quotes>
-
     </div>
 </template>
 
@@ -260,45 +261,34 @@
 </script>
 
 <style>
+    .content-box {
+        position: relative;
+    }
     i {
         color: #04519b;
-        position: fixed;
+        position: absolute;
+    }
+    .fa-map-marker-alt, .fa-redo-alt {
+        z-index: 99;
+        top: .4em;
+        cursor: pointer; 
+    }
+    .fa-map-marker-alt:hover, .fa-redo-alt:hover {
+        cursor: pointer;
     }
     .fa-map-marker-alt {
         font-size: 1.7em;
-        top: 2.2em;
-        left: .3em;       
+        left: .3em;
     }
     .pulse {
         animation: pulse .3s linear forwards;
     }
     .fa-redo-alt {
         font-size: 1.4em;
-        top: 2.75em;
         right: .35em;
     }
     .spin {
         animation: spin 1s ease-out forwards;
-    }
-    @keyframes pulse {
-        0% {
-            transform: translateY(0);
-        }
-        65% {
-            transform: translateY(2px) scaleX(1.1);
-
-        }
-        100% {
-            transform: translateY(0) scaleY(1);
-        }
-    }
-    @keyframes spin {
-        from {
-           transform: rotate(0deg); 
-        }
-        to {
-            transform: rotate(360deg);
-        }
     }
     .quotes {
         display: none;
@@ -309,64 +299,90 @@
         }
     }
     @media only screen and (min-width: 375px) {
-        .fa-map-marker-alt {
-            top: 2.5em;     
-        }
         .fa-redo-alt {
             font-size: 1.4em;
-            top: 3.1em;
         }
     }
     @media only screen and (min-width: 411px) {
         .fa-map-marker-alt {
-            top: 3.2em;
             left: .3em;     
         }
         .fa-redo-alt {
             font-size: 1.4em;
-            top: 3.9em;
             right: .4em;
         }
     }
     @media only screen and (min-height: 785px) {
         .fa-map-marker-alt {
             font-size: 1.9rem;
-            top: 2.8em;
             left: .4em;     
         }
         .fa-redo-alt {
             font-size: 1.6em;
-            top: 3.4em;
             right: .5em;
         }
     }
     @media only screen and (min-width: 768px) {
         .fa-map-marker-alt {
             font-size: 2.3rem;
-            top: 2.8em;
             left: .5em;     
         }
         .fa-redo-alt {
             font-size: 1.9em;
-            top: 3.4em;
             right: .6em;
         }
     }
     @media only screen and (min-width: 1024px) {
         .fa-map-marker-alt {
-            font-size: 3.2rem;
-            top: 2.6em;    
+            font-size: 3.2rem;   
         }
         .fa-redo-alt {
             font-size: 2.6em;
-            top: 3.3em;
         }
     }
     @media only screen and (min-width: 1025px) {
         .content-box {
+            position: relative;
             max-width: 1280px;
             margin-left: auto;
             margin-right: auto;
+        }
+        .fa-map-marker-alt {
+            position: absolute;
+            font-size: 2.3rem;
+        }
+        .fa-redo-alt {
+            position: absolute;
+            font-size: 1.9em;
+        }
+    }
+    @media only screen and (min-width: 1440px) {
+        .fa-map-marker-alt {
+            left: 0;
+        }
+        .fa-redo-alt {
+            right: 0; 
+        }
+    }
+
+    @keyframes pulse {
+    0% {
+        transform: translateY(0);
+    }
+    65% {
+        transform: translateY(4px) scaleX(1.2);
+
+    }
+    100% {
+        transform: translateY(0) scaleY(1);
+    }
+    }
+    @keyframes spin {
+        from {
+           transform: rotate(0deg); 
+        }
+        to {
+            transform: rotate(360deg);
         }
     }
 
