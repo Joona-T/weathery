@@ -1,8 +1,7 @@
 <template>
     <div class="weather-quotes">
         <transition name="slide" mode="out-in">
-            <!-- <p :key="quoteIndex">{{ selectedQuote }}</p> -->
-            <p>Some people are making such thorough preparation for rainy days that they aren't enjoying today's sunshine.</p>
+            <p :key="quoteIndex">{{ selectedQuote }}</p>
         </transition>
     </div>
 </template>
