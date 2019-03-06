@@ -183,30 +183,37 @@
                     .then(data => {
                         // The response contains various location objects,
                         // based on the accuracy of the user's coordinates.
-                        data.results[0].address_components.forEach((adressComp) => {
-                            // Some responses don't contain city, so municipality
-                            // can be used in that case.
-                            let localityFound = false;
-                            adressComp.types.forEach((type) => {
-                                //Try to find city.
-                                if(type === 'locality') {
-                                    // If the city is found, fetch the forecast data with it.
-                                    self.location = adressComp.long_name;
-                                    self.fetchForecastData();
-                                    localityFound = true;
-                                }
-                            });
-                            //If city isn't found, search for next locality entity.
-                            if(!localityFound)
-                            adressComp.types.forEach((type) => {
-                                // Try to find municipality.
-                                if(type === 'administrative_area_level_3') {
-                                    self.location = adressComp.long_name;
-                                    self.fetchForecastData();
-                                    localityFound = true;
-                                }
-                            });
-                        })
+                        // Loop through these objects until a city or a municipality is found.
+                        let localityFound = false;
+                        for(let i = 0; localityFound === false; i++) {
+                            data.results[i].address_components.forEach((adressComp) => {
+                                adressComp.types.forEach((type) => {
+                                    //Try to find city.
+                                    if(type === 'locality') {
+                                        // If the city is found, fetch the forecast data with it.
+                                        self.location = adressComp.long_name;
+                                        self.fetchForecastData();
+                                        localityFound = true;
+                                    }
+                                });
+                                //If a city isn't found, search for the next locality entity (municipality).
+                                if(!localityFound)
+                                adressComp.types.forEach((type) => {
+                                    // Try to find municipality.
+                                    if(type === 'administrative_area_level_3') {
+                                        self.location = adressComp.long_name;
+                                        self.fetchForecastData();
+                                        localityFound = true;
+                                    }
+                                });
+                            })
+                            // If the app is unable to locate user, infrom the user and stop looping.
+                            if(!localityFound && i + 1 === data.results.length) {
+                                alert("Weathery was unable to locate you :(");
+                                // Break the loop.
+                                localityFound = true;
+                            }
+                        }
                     });
             },
             // Use Suncalc lib for finding out whether the sun has set or not.

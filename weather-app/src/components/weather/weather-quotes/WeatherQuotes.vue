@@ -7,7 +7,9 @@
 </template>
 
 <script>
+    // SymbolCodes tell us whehter it's cloudy, sunny, foggy etc.
     import * as symbolCodes from '../weather-symbols.json';
+    // Funny weather quotes classified by weather.
     import * as quotes from './weather-quotes.json';
 
     export default {
@@ -17,10 +19,12 @@
         },
         data() {
             return {
-                quoteIndex: 6
+                quoteIndex: 0
             }
         },
         computed: {
+            // Transform the weather's code into weather symbol name,
+            // this is how we choose right weather symbol from the symbolCodes file.
             weatherName() {
                 const symbolCode = (parseInt(this.weather)).toString();
                 let symbolName = "clear-day"
@@ -31,19 +35,30 @@
                 }
                 return symbolName;
             },
+            // After findgin the right name for the weather,
+            // the right weather quote can be selected.
             selectedQuote() {
                 if(this.weatherName) {
-                    return quotes.default[this.weatherName][this.quoteIndex];
+                    // Different weather's have different ammount of quotes,
+                    // so when the weather changes, there is a danger that the quote index
+                    // is greater than the lenght of an array of the new weathers quotes.
+                    // if this is the case, initialize the quoteIndex.
+                    const weathersQuotes = quotes.default[this.weatherName]
+                    if(this.quoteIndex >= weathersQuotes.length) {
+                        this.quoteIndex = 0;
+                    }
+                    return weathersQuotes[this.quoteIndex];
                 } else {
                     return "Weather forecast for tonight: dark.";
                 }
             }
         },
         methods: {
+            // Method for changing quotes with set interval.
             changeQuote() {
-                if(quotes.default[this.weatherName]) {
-                    const quoteList = quotes.default[this.weatherName];
-                    if(this.quoteIndex + 1 === quoteList.length) {
+                const quoteList = quotes.default[this.weatherName];
+                if(quoteList) {
+                    if(this.quoteIndex + 1 === quoteList.length || this.quoteIndex >= quoteList.length) {
                         this.quoteIndex = 0;
                     } else {
                         this.quoteIndex++;
